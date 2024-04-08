@@ -1,33 +1,49 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
+import ReorderableList from './components/draggable/ReorderableList'
+import { reorder } from './components/draggable/reorder'
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [items, setItems] = useState([])
+
+  const addItem = (itemName) => {
+    setItems([...items, { id: crypto.randomUUID(), text: itemName }])
+  }
+
+  const handleOrderChange = (startIndex, endIndex) => {
+      const newItemsData = reorder(items, startIndex, endIndex)
+      setItems(newItemsData)
+  }
+
+  const removeItem = (itemId) => {
+      const filtered = items.filter(item => item.id !== itemId)
+      setItems(filtered)
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        const itemName = e.target.elements.itemName.value.trim();
+        if (itemName) {
+          addItem(itemName);
+          e.target.reset();
+        }
+      }} style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
+        <input name="itemName" placeholder="Enter item name" style={{ padding: '0.5rem' }} autoComplete="off" />
+        <button type="submit" style={{ padding: '0.5rem' }}>Add Item</button>
+      </form>
+
+      
+      <ReorderableList data={
+          items.map(item => ({
+              id: item.id,
+              text: item.text,
+          }))
+      } handleChange={handleOrderChange} removalHandler={removeItem} />
+
+      <p>Items state: [{items.map(item => item.text).join(', ')}]</p>
     </>
   )
 }
