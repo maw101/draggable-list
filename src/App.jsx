@@ -25,12 +25,16 @@ function App() {
     <>
       <form onSubmit={(e) => {
         e.preventDefault();
-        addItem(e.target.elements.itemName.value);
-        e.target.reset();
-      }}>
-        <input name="itemName" placeholder="Enter item name" />
-        <button type="submit">Add Item</button>
+        const itemName = e.target.elements.itemName.value.trim();
+        if (itemName) {
+          addItem(itemName);
+          e.target.reset();
+        }
+      }} style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
+        <input name="itemName" placeholder="Enter item name" style={{ padding: '0.5rem' }} autoComplete="off" />
+        <button type="submit" style={{ padding: '0.5rem' }}>Add Item</button>
       </form>
+
       
       <ReorderableList data={
           items.map(item => ({

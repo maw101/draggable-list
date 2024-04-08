@@ -37,7 +37,7 @@ const ReorderableList = ({ data, handleChange, removalHandler }: ReorderableList
         <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
             <Droppable droppableId="droppable">
                 {(provided, _) => (
-                    <div ref={provided.innerRef}>
+                    <div ref={provided.innerRef} style={{ display: 'grid', gap: '5px' }}>
                         {data.map((item, index) => (
                             <DraggableListItem id={item.id} index={index} key={`draggable-${index}`} text={item.text} removalHandler={removalHandler} />
                         ))}
