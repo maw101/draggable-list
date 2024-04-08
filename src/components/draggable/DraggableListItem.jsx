@@ -31,9 +31,12 @@ const DraggableListItem = ({ id, index, text, removalHandler }) => {
                         provided.draggableProps.style
                     )}
                 >
-                    <span>{text}</span>
+                    <span style={{ display: 'flex', alignItems: 'center' }}>
+                        <span style={{ fontSize: '1.2rem', marginRight: '0.5rem' }}>&#9776;</span>
+                        {text}
+                    </span>
                     {removalHandler && (
-                        <button onClick={() => removalHandler(id)}>Remove</button>
+                        <span style={{ marginLeft: 'auto', cursor: 'pointer' }} onClick={() => removalHandler(id)}>X</span>
                     )}
                 </div>
             )}
