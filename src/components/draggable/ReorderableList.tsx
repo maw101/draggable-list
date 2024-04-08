@@ -35,16 +35,18 @@ const ReorderableList = ({ data, handleChange, removalHandler }: ReorderableList
 
     return (
         <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
-            <Droppable droppableId="droppable">
-                {(provided, _) => (
-                    <div ref={provided.innerRef} style={{ display: 'grid', gap: '5px' }}>
-                        {data.map((item, index) => (
-                            <DraggableListItem id={item.id} index={index} key={`draggable-${index}`} text={item.text} removalHandler={removalHandler} />
-                        ))}
-                        {provided.placeholder}
-                    </div>
-                )}
-            </Droppable>
+            <div style={{ backgroundColor: '#d3d3d3', padding: '20px' }}>
+                <Droppable droppableId="droppable">
+                    {(provided, _) => (
+                        <div ref={provided.innerRef} style={{ display: 'grid', gap: '5px' }}>
+                            {data.map((item, index) => (
+                                <DraggableListItem id={item.id} index={index} key={`draggable-${index}`} text={item.text} removalHandler={removalHandler} />
+                            ))}
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
+            </div>
         </DragDropContext>
     )
 }
