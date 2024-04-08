@@ -1,8 +1,7 @@
-# React + Vite
+# Barebones React Draggable List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple React application that demonstrates a draggable list using [`@hello-pangea/dnd`](https://www.npmjs.com/package/@hello-pangea/dnd).
 
-Currently, two official plugins are available:
+The application allows users to reorder items in a list by dragging and dropping them.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**[Demo](https://maw101.github.io/draggable-list/)**
