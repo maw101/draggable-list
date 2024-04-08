@@ -42,6 +42,8 @@ function App() {
               text: item.text,
           }))
       } handleChange={handleOrderChange} removalHandler={removeItem} />
+
+      <p>Items state: [{items.map(item => item.text).join(', ')}]</p>
     </>
   )
 }
