@@ -7,7 +7,7 @@ const DraggableListItem = ({ id, index, text, removalHandler }) => {
         draggableStyle
     ) => ({
         ...draggableStyle,
-        backgroundColor: "#e0e0e0",
+        background: "#e0e0e0",
         borderRadius: "4px",
         padding: "5px",
         display: "flex",
@@ -15,7 +15,7 @@ const DraggableListItem = ({ id, index, text, removalHandler }) => {
         alignItems: 'center',
         justifyContent: 'center',
         ...(isDragging && {
-            background: "#ededed",
+            background: "#f5f5f5",
         })
     })
 
